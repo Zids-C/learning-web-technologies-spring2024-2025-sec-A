@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User ID and Picture Upload</title>
+    <script>
+        function validateForm() {
+            const userId = document.getElementById("userId").value;
+            const picture = document.getElementById("picture").value;
+            let msg = document.getElementById("vmsg");
+
+            if (!userId || isNaN(userId) || Number(userId) <= 0) {
+                msg.innerHTML="User ID must be a positive number.";
+                msg.style.color = "red";
+                return false;
+            }
+
+            if (!picture) {
+                msg.innerHTML="Picture upload field cannot be empty.";
+                msg.style.color = "red";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="return validateForm()">
+        <label for="userId">User ID:</label>
+        <input type="text" id="userId" name="userId" required>
+        <br><br>
+        <label for="picture">Upload Picture:</label>
+        <input type="file" id="picture" name="picture" accept="image/*" required>
+        <br><br>
+        <button type="submit">Submit</button>
+        <p id="vmsg"></p>
+    </form>
+</body>
+</html>

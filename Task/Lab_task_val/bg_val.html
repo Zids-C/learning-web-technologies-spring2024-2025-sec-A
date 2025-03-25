@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Group Validation</title>
+    <script>
+        function validateForm() {
+            let msg = document.getElementById("vmsg");
+            const bloodGroup = document.getElementById("bloodGroup").value;
+            if (bloodGroup === "") {
+                msg.innerHTML = "Blood group must be selected!";
+                msg.style.color = "red";
+                return false;
+            }
+            alert("Blood group selected: " + bloodGroup);
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form action="dp_up.html" onsubmit="return validateForm()">
+        <label for="bloodGroup">Blood Group:</label>
+        <select id="bloodGroup" name="bloodGroup">
+            <option value="">--Select--</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+        <button type="submit">Submit</button>
+        <p id="vmsg"></p>
+    </form>
+</body>
+</html>
