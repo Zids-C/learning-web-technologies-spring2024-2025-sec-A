@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date of Birth Validation</title>
+    <script>
+        function validateDOB() {
+            let dd = document.getElementById("dd").value;
+            let mm = document.getElementById("mm").value;
+            let yyyy = document.getElementById("yyyy").value;
+
+            if (dd < 1 || dd > 31) {
+                alert("Day must be between 1 and 31.");
+                return false;
+            }
+            if (mm < 1 || mm > 12) {
+                alert("Month must be between 1 and 12.");
+                return false;
+            }
+            if (yyyy < 1900 || yyyy > 2025) {
+                alert("Year must be between 1900 and 2025.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Date of Birth Validation</h1>
+    <form action="degree_val.html" onsubmit="return validateDOB()">
+        <label for="dd">Day (DD):</label>
+        <input type="number" id="dd" name="dd" placeholder="DD" required><br><br>
+
+        <label for="mm">Month (MM):</label>
+        <input type="number" id="mm" name="mm" placeholder="MM" required><br><br>
+
+        <label for="yyyy">Year (YYYY):</label>
+        <input type="number" id="yyyy" name="yyyy" placeholder="YYYY" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

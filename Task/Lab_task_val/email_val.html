@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <title>Email Validation</title>
+</head>
+<body>
+    <h1 id="header">Email Validation</h1>
+    <form action="gender_val.html" onsubmit="return validate()">
+        Email:<input type="text" name="email" id="email" value=""  />
+        <p id="umsg"></p>
+        
+        <input type="submit" name="submit" id="submit" value="submit" />
+        <p id="vmsg"></p>
+    </form>
+
+    <script>
+        function validate()
+        {
+            let email = document.getElementById('email').value;
+            let msg = document.getElementById('umsg');
+            if(email == "")
+            {
+                msg.innerHTML = "Email can't be empty!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if(email.split(' ').filter(word => word.length > 0).length > 1)
+            {
+                msg.innerHTML = "Email can't contain spaces!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if(email.split('@').length != 2)
+            {
+                msg.innerHTML = "Email must contain @!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if(email.split('@')[0].length < 1)
+            {
+                msg.innerHTML = "Email must contain a username!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if(email.split('@')[1].split('.').length < 2)
+            {
+                msg.innerHTML = "Email must contain a domain!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else
+            {
+                for(let i = 0; i < email.length; i++)
+                {
+                    if( (email[i] >= 'a' && email[i] <= 'z') || email[i] == '.' 
+                    || email[i] == '@' || (email[i] >= '0' && email[i] <= '9'))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        msg.innerHTML = "Email can contain a-z or dot(.) or @";
+                        msg.style.color = 'red';
+                        return false;
+                    }
+                }
+            }
+            return true;
+        } 
+
+    </script>
+</body>
+</html>

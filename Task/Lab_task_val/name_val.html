@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+    <title>Name Validation</title>
+</head>
+<body>
+    <h1 id="header">Name Validation</h1>
+    <form action="email_val.html" onsubmit="return validate()">
+        Name:<input type="text" name="name" id="name" value=""  />
+        <p id="umsg"></p>
+        
+        <input type="submit" name="submit" id="submit" value="submit" />
+        <p id="vmsg"></p>
+    </form>
+
+    <script>
+        function validate()
+        {
+            let name = document.getElementById('name').value;
+            let msg = document.getElementById('umsg');
+            if(name == "")
+            {
+                msg.innerHTML = "Name can't be empty!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if(name[0] >= '0' && name[0] <= '9')
+            {
+                msg.innerHTML = "Name must start with a letter!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if (name.split(' ').filter(word => word.length > 0).length < 2) {
+                msg.innerHTML = "Name must contain at least two words!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else
+            {
+                for(let i = 0; i < name.length; i++)
+                {
+                    if((name[i] >= 'A' && name[i] <= 'Z') || 
+                    (name[i] >= 'a' && name[i] <= 'z') || name[i] == '.' 
+                    || name[i] == '-' || name[i] == ' ')
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        msg.innerHTML = "Name can contain a-z or A-Z or dot(.) or dash(-)";
+                        msg.style.color = 'red';
+                        return false;
+                    }
+                }
+            }
+            return true;
+        } 
+
+    </script>
+</body>
+</html>

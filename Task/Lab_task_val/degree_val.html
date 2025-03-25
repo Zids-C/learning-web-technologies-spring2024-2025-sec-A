@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degree Validation</title>
+    <script>
+        
+        function validateDegree() {
+            const ssc = document.getElementById('ssc').checked;
+            const hsc = document.getElementById('hsc').checked;
+            const bsc = document.getElementById('bsc').checked;
+            let msg = document.getElementById('vmsg');
+
+            if (!ssc && !hsc && !bsc) {
+                msg.innerHTML = "Atleast one degree must be selected!";
+                msg.style.color = 'red';
+                return false;
+            }
+            alert('Form submitted successfully!');
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Degree</h1>
+    <form onsubmit="return validateDegree()">
+        <label>
+            <input type="checkbox" id="ssc" name="degree" value="SSC"> SSC
+        </label><br>
+        <label>
+            <input type="checkbox" id="hsc" name="degree" value="HSC"> HSC
+        </label><br>
+        <label>
+            <input type="checkbox" id="bsc" name="degree" value="BSC"> BSC
+        </label><br><br>
+        
+        <button type="submit">Submit</button>
+        <p id="vmsg"></p>
+    </form>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <title>Gender Validation</title>
+    <script>
+        function validate() {
+            const male = document.getElementById("male");
+            const female = document.getElementById("female");
+            const vmsg = document.getElementById("vmsg");
+
+            if (!male.checked && !female.checked) {
+                vmsg.textContent = "Please select a gender.";
+                vmsg.style.color = "red";
+                return false;
+            }
+            vmsg.textContent = "";
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1 id="header">Gender Validation</h1>
+    <form action="dob_val.html" onsubmit="return validate()">
+        Gender:
+        <input type="radio" name="Gender" id="male" value="Male" /> Male
+        <input type="radio" name="Gender" id="female" value="Female" /> Female
+        <br />
+        <input type="submit" name="submit" id="submit" value="submit" />
+        <p id="vmsg"></p>
+    </form>
+</body>
+</html>
