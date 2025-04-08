@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form id="auth" action="#" method="post" onsubmit="return validateLogin()">
+        <fieldset>
+            <legend>Login Interface</legend>
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <h2>Login to Your Account</h2>
+                        <p>Don't have an account? <a href="signup.html">Sign up</a> or <a href="res_pass.html">reset password</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="login-email">Email:</label></td>
+                    <td>
+                        <input type="email" id="login-email" name="email" required>
+                        <p id="email-msg" class="error-msg"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="login-password">Password:</label></td>
+                    <td>
+                        <input type="password" id="login-password" name="password" required>
+                        <p id="password-msg" class="error-msg"></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Login">
+                        <p><a href="fr_pass.html">Forgot Password?</a></p>
+                        <p id="validation-msg" class="error-msg"></p>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+
+    <script>
+        function validateLogin() {
+            // Get form values
+            let email = document.getElementById('login-email').value;
+            let password = document.getElementById('login-password').value;
+            
+            // Get message elements
+            let emailMsg = document.getElementById('email-msg');
+            let passwordMsg = document.getElementById('password-msg');
+            let validationMsg = document.getElementById('validation-msg');
+            
+            // Reset previous messages
+            emailMsg.innerHTML = "";
+            passwordMsg.innerHTML = "";
+            validationMsg.innerHTML = "";
+            
+            // Validate email
+            if(email == "")
+            {
+                msg.innerHTML = "Email can't be empty!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if(email.split(' ').filter(word => word.length > 0).length > 1)
+            {
+                msg.innerHTML = "Email can't contain spaces!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if(email.split('@').length != 2)
+            {
+                msg.innerHTML = "Email must contain @!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if(email.split('@')[0].length < 1)
+            {
+                msg.innerHTML = "Email must contain a username!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else if(email.split('@')[1].split('.').length < 2)
+            {
+                msg.innerHTML = "Email must contain a domain!";
+                msg.style.color = 'red';
+                return false;
+            }
+            else
+            {
+                for(let i = 0; i < email.length; i++)
+                {
+                    if( (email[i] >= 'a' && email[i] <= 'z') || email[i] == '.' 
+                    || email[i] == '@' || (email[i] >= '0' && email[i] <= '9'))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        msg.innerHTML = "Email can contain a-z or dot(.) or @";
+                        msg.style.color = 'red';
+                        return false;
+                    }
+                }
+            }
+            
+            // Validate password
+            if (password === "") {
+                passwordMsg.innerHTML = "Password cannot be empty!";
+                passwordMsg.style.color = 'red';
+                return false;
+            }
+            
+            // Password length check
+            if (password.length < 6) {
+                passwordMsg.innerHTML = "Password must be at least 6 characters!";
+                passwordMsg.style.color = 'red';
+                return false;
+            }
+            
+            // If all validations pass
+            validationMsg.innerHTML = "Login successful!";
+            validationMsg.style.color = 'green';
+            
+           
+            return false;
+        }
+    </script>
+    
+    <style>
+        .error-msg {
+            margin: 0;
+            font-size: 0.8em;
+            height: 1em;
+        }
+    </style>
+</body>
+</html>
